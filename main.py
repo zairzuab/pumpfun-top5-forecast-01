@@ -60,7 +60,8 @@ def main():
     for k in range(1, 6):
         raws = []
         for r in range(1, 26):
-            raws.append(math.exp(-((r - k) ** 2) / (2 * 2.0 ** 2)))
+            # Gaussian in rank distance: sigma 2.0, so 2*sigma^2 = 8.0.
+            raws.append(math.exp(-((r - k) ** 2) / 8.0))
         s = sum(raws)
         for r in range(1, 26):
             p = round(raws[r - 1] / s * 0.70, 6)
