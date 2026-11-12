@@ -1,3 +1,10 @@
+# Momentum log-cap forecaster (pumpfun top-5, 24h out).
+# Design: per-mint log10 market cap in SOL; growth g from the LAST two
+# points clipped to [-0.3, +0.5] per hour; forecast to the middle answer
+# read (reads[3]) with horizon capped at 3.0 h; rank by predicted log-cap;
+# place probabilities are a Gaussian in rank distance (sigma 2.0) scaled
+# to 0.70 per place; size bins are a discrete Gaussian (sigma 7 bins)
+# scaled to 0.85 per place. Deterministic, stdlib only, offline.
 import os, json, math
 from datetime import datetime
 
